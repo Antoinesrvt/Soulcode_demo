@@ -6,28 +6,34 @@ import { Post } from "@/interfaces";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import { GetStaticProps } from "next";
+import { useEffect, useState } from "react";
 
-type IndexPageProps = {
-  posts: Post[];
+const IndexPage = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    fetchPosts().then((fetchedPosts) => {
+      setPosts(fetchedPosts);
+    });
+  }, []);
+  return (
+    <Layout title="Home">
+      <div className="flex text-primary-foreground py-8 px-8">
+        <TrendingPosts posts={posts} />
+        <div className="container flex-1">
+          <h3 className="text-2xl mb-4">Subscribe to AI news</h3>
+          <div className="flex w-full max-w-sm items-center space-x-2 mb-8">
+            <Input type="email" placeholder="Email" />
+            <Button type="submit">Subscribe</Button>
+          </div>
+          <LatestPosts posts={posts} />
+        </div>
+      </div>
+    </Layout>
+  );
 };
 
-const IndexPage = ({ posts }: IndexPageProps) => (
-  <Layout title="Home">
-    <div className="flex text-primary-foreground py-8 px-8">
-      <TrendingPosts posts={posts} />
-      <div className="container flex-1">
-        <h3 className="text-2xl mb-4">Subscribe to AI news</h3>
-        <div className="flex w-full max-w-sm items-center space-x-2 mb-8">
-          <Input type="email" placeholder="Email" />
-          <Button type="submit">Subscribe</Button>
-        </div>
-        <LatestPosts posts={posts} />
-      </div>
-    </div>
-  </Layout>
-);
-
-async function fetchPosts() {
+async function fetchPosts(): Promise<Post[]> {
   const response = await fetch(
     "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app/api/posts"
   );
@@ -40,15 +46,5 @@ async function fetchPosts() {
     content: post.content,
   }));
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await fetchPosts();
-
-  return {
-    props: {
-      posts,
-    },
-  };
-};
 
 export default IndexPage;
