@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 
-const AddPost = () => {
+const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
   const [author, setAuthor] = useState("");
   const [media, setMedia] = useState("");
   const [content, setContent] = useState("");
@@ -20,7 +19,7 @@ const AddPost = () => {
         },
         body: JSON.stringify({
           title,
-          date,
+          date: "00-00-00",
           author,
           media,
           content,
@@ -36,7 +35,6 @@ const AddPost = () => {
     }
 
     setTitle("");
-    setDate("");
     setAuthor("");
     setMedia("");
     setContent("");
@@ -44,22 +42,16 @@ const AddPost = () => {
 
   return (
     <Layout title="Add Post">
-      <form onSubmit={handleSubmit}>
+      <form
+        className="container grid grid-col text-secondary"
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="title">Title</label>
         <input
           type="text"
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-
-        <label htmlFor="date">Date</label>
-        <input
-          type="text"
-          id="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
           required
         />
 
@@ -95,4 +87,4 @@ const AddPost = () => {
   );
 };
 
-export default AddPost;
+export default CreatePost;
