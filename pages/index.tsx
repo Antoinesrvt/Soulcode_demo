@@ -6,7 +6,6 @@ import { Post } from "@/interfaces";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import { GetStaticProps } from "next";
-import { getPosts } from "../lib/getPosts";
 
 const posts: Post[] = [
   {
