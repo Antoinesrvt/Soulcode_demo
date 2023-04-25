@@ -18,6 +18,7 @@ const CreatePost = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          //Authorization: `Bearer YOUR_ACCESS_TOKEN`,
         },
         body: JSON.stringify({
           title,
@@ -29,7 +30,7 @@ const CreatePost = () => {
       }
     );
 
-    const data = await response.json();
+    const data = await response.text();
 
     if (response.ok) {
       setPopup({ message: "Post added successfully!", visible: true });
@@ -39,7 +40,7 @@ const CreatePost = () => {
         message: "Error adding the post. Please try again.",
         visible: true,
       });
-      alert(`Error: ${data.error}`);
+      alert(`Error: ${data}`);
     }
 
     setTitle("");
