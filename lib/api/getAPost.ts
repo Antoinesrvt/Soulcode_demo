@@ -1,5 +1,3 @@
-// pages/api/post.ts
-
 import { NextApiRequest, NextApiResponse } from "next";
 import payload from "payload";
 
