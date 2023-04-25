@@ -12,55 +12,41 @@ const CreatePost = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    try {
-      const response = await fetch(
-        "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app/api/posts",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            date: "00-00-00",
-            author,
-            media,
-            content,
-          }),
-        }
-      );
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        date: new Date().toISOString(),
+        author,
+        media,
+        content,
+      }),
+    });
 
-      const responseText = await response.text();
+    const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} - ${response.statusText}`);
-      }
-
-      const data = JSON.parse(responseText);
-
-      setPopup({ message: `Post added successfully!: ${data}`, visible: true });
-
-      setTitle("");
-      setAuthor("");
-      setMedia("");
-      setContent("");
-
-      // Hide the popup after 3 seconds
-      setTimeout(() => {
-        setPopup({ message: "", visible: false });
-      }, 3000);
-    } catch (error) {
-      console.error("Error:", error);
+    if (response.ok) {
+      setPopup({ message: "Post added successfully!", visible: true });
+    } else {
       setPopup({
         message: "Error adding the post. Please try again.",
         visible: true,
       });
-
-      // Hide the popup after 3 seconds
-      setTimeout(() => {
-        setPopup({ message: "", visible: false });
-      }, 3000);
+      console.error(`Error: ${data.error}`);
     }
+
+    setTitle("");
+    setAuthor("");
+    setMedia("");
+    setContent("");
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+      setPopup({ message: "", visible: false });
+    }, 3000);
   };
 
   return (
