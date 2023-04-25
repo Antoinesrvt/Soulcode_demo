@@ -12,46 +12,55 @@ const CreatePost = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const response = await fetch(
-      "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app/api/posts",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          //Authorization: `Bearer YOUR_ACCESS_TOKEN`,
-        },
-        body: JSON.stringify({
-          title,
-          date: "00-00-00",
-          author,
-          media,
-          content,
-        }),
+    try {
+      const response = await fetch(
+        "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app/api/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            date: "00-00-00",
+            author,
+            media,
+            content,
+          }),
+        }
+      );
+
+      const responseText = await response.text();
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
-    );
 
-    const data = await response.text();
+      const data = JSON.parse(responseText);
 
-    if (response.ok) {
-      setPopup({ message: "Post added successfully!", visible: true });
-      alert("Post added successfully!");
-    } else {
+      setPopup({ message: `Post added successfully!: ${data}`, visible: true });
+
+      setTitle("");
+      setAuthor("");
+      setMedia("");
+      setContent("");
+
+      // Hide the popup after 3 seconds
+      setTimeout(() => {
+        setPopup({ message: "", visible: false });
+      }, 3000);
+    } catch (error) {
+      console.error("Error:", error);
       setPopup({
         message: "Error adding the post. Please try again.",
         visible: true,
       });
-      alert(`Error: ${data}`);
+
+      // Hide the popup after 3 seconds
+      setTimeout(() => {
+        setPopup({ message: "", visible: false });
+      }, 3000);
     }
-
-    setTitle("");
-    setAuthor("");
-    setMedia("");
-    setContent("");
-
-    // Hide the popup after 3 seconds
-    setTimeout(() => {
-      setPopup({ message: "", visible: false });
-    }, 3000);
   };
 
   return (
