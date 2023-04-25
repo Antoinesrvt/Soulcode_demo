@@ -7,35 +7,12 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import { GetStaticProps } from "next";
 
-const posts: Post[] = [
-  {
-    title: "Example Post 1",
-    content:
-      "This is an example description for the first post. It should be a brief summary of the post content.",
-    media: "https://via.placeholder.com/300x200",
-    author: "John Doe",
-    date: "yersterday",
-  },
-  {
-    title: "Example Post 1",
-    content:
-      "This is an example description for the first post. It should be a brief summary of the post content.",
-    media: "https://via.placeholder.com/300x200",
-    author: "John Doe",
-    date: "yersterday",
-  },
-  {
-    title: "Example Post 1",
-    content:
-      "This is an example description for the first post. It should be a brief summary of the post content.",
-    media: "https://via.placeholder.com/300x200",
-    author: "John Doe",
-    date: "yersterday",
-  },
-];
+type IndexPageProps = {
+  posts: Post[];
+};
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
+const IndexPage = ({ posts }: IndexPageProps) => (
+  <Layout title="Home">
     <div className="flex text-primary-foreground py-8 px-8">
       <TrendingPosts posts={posts} />
       <div className="container flex-1">
@@ -50,14 +27,28 @@ const IndexPage = () => (
   </Layout>
 );
 
+async function fetchPosts() {
+  const response = await fetch(
+    "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app/api/posts"
+  );
+  const data = await response.json();
+  return data.docs.map((post: Post) => ({
+    title: post.title,
+    date: post.date,
+    author: post.author,
+    media: post.media,
+    content: post.content,
+  }));
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await fetchPosts();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+
 export default IndexPage;
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   const posts = await getPosts();
-
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// };
