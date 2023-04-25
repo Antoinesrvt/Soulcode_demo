@@ -1,5 +1,9 @@
 import { buildConfig } from "payload/config";
 
 export default buildConfig({
-  serverURL: "http://localhost:3000",
+  serverURL: "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app",
+  admin: {
+    user: "antoine.srvt@gmail.com",
+    pass: "MotDePasse123",
+  },
 });
