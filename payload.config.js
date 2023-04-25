@@ -1,25 +1,7 @@
-const Post = {
-  slug: "posts",
-  fields: [
-    {
-      name: "title",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "content",
-      type: "richText",
-      required: true,
-    },
-    {
-      name: "publishedDate",
-      type: "date",
-      required: true,
-    },
-  ],
-};
+import { buildConfig } from "payload/config";
 
-module.exports = {
-  secret: "eauilcbamoqmyoxcmbuzmuieiaemam",
-  mongoURL: "mongodb+srv://antoinesrvt:Manant%400012@testings.49smxd3.mongodb.net/?retryWrites=true&w=majority",
-};
+export default buildConfig({
+  // By default, Payload will boot up normally
+  // and you will be provided with a base `User` collection.
+  // But, here is where you define how you'd like Payload to work!
+});

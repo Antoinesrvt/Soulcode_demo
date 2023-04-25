@@ -53,12 +53,12 @@ const IndexPage = () => (
 
 export default IndexPage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPosts();
+// export const getStaticProps: GetStaticProps = async () => {
+//   const posts = await getPosts();
 
-  return {
-    props: {
-      posts,
-    },
-  };
-};
+//   return {
+//     props: {
+//       posts,
+//     },
+//   };
+// };
