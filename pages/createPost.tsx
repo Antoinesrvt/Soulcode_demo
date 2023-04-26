@@ -12,7 +12,7 @@ const CreatePost = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const response = await fetch("/api/posts", {
+    const response = await fetch("/api/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 import express from "express";
 import payload from "payload";
-import { postHandler } from "./pages/api/posts";
+import { postHandler } from "./pages/api/post";
 const dotenv = require('dotenv')
 
 dotenv.config();
@@ -13,7 +13,7 @@ const start = async () => {
     express: app,
   });
 
-  app.use("/api/posts", (req, res) => postHandler(req, res));
+  app.use("/api/post", (req, res) => postHandler(req, res));
 
   app.listen(3000, async () => {
     console.log(
