@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import type { NextApiHandler } from "next";
 import payload from "payload";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function PostHandler(req: NextApiRequest, res: NextApiResponse) {
 
 console.log("Request method:", req.method);
 console.log("Request body:", req.body);
@@ -38,6 +37,4 @@ console.log("Request body:", req.body);
     res.status(500).json({ message: "Server error.", error });
   }
 };
-
-export const postHandler: NextApiHandler = handler;
 
