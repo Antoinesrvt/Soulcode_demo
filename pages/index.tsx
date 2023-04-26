@@ -3,10 +3,11 @@ import TrendingPosts from "@/components/TrendingPosts";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Post } from "@/interfaces";
-import Link from "next/link";
 import Layout from "../components/Layout";
-import { GetStaticProps } from "next";
 import { useEffect, useState } from "react";
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const IndexPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -35,7 +36,7 @@ const IndexPage = () => {
 
 async function fetchPosts(): Promise<Post[]> {
   const response = await fetch(
-    "https://antoinesrvt-gmailcom-antoine-servant.payloadcms.app/api/posts"
+    `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/posts`
   );
   const data = await response.json();
   return data.docs.map((post: Post) => ({
