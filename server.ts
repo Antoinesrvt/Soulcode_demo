@@ -1,6 +1,6 @@
 import express from "express";
 import payload from "payload";
-import { postHandler } from "./pages/api/post";
+import { postHandler } from "./pages/api/posts";
 const dotenv = require('dotenv')
 
 dotenv.config();
