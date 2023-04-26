@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const pageQuery = await payload.find({
-      collection: "posts",
+      collection: "post",
       where: {
         slug: {
           equals: slug,

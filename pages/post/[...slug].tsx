@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     : "home";
 
   const pageQuery = await payload.find({
-    collection: "posts",
+    collection: "post",
     where: {
       slug: {
         equals: slug,

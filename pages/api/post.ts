@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method === "GET") {
       // getAll function
-      const postsQuery = await payload.find({ collection: "posts" });
+      const postsQuery = await payload.find({ collection: "post" });
 
       if (!postsQuery.docs) {
         res.status(404).json({ message: "No posts found." });
@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } else if (req.method === "POST") {
       // create function
       const newPost = await payload.create({
-        collection: "posts",
+        collection: "post",
         data: req.body,
       });
 

@@ -2,7 +2,7 @@
 import { CollectionConfig } from 'payload/types';
 
 const Post: CollectionConfig = {
-  slug: 'posts',
+  slug: 'post',
   fields: [
     {
       name: 'title',
