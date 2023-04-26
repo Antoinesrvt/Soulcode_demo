@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import payload from 'payload';
-import "../../lib/api/payload-init"
+import "./payload-init"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

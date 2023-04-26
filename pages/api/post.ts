@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import payload from "payload";
-import "../../lib/api/payload-init"
+import "./payload-init"
 
 export default async function PostHandler(req: NextApiRequest, res: NextApiResponse) {
 
