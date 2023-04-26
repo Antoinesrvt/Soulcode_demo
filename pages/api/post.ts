@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiHandler } from "next";
 import payload from "payload";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -33,4 +34,5 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default handler;
+export const postHandler: NextApiHandler = handler;
+
