@@ -3,6 +3,10 @@ import type { NextApiHandler } from "next";
 import payload from "payload";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+
+console.log("Request method:", req.method);
+console.log("Request body:", req.body);
+
   try {
     if (req.method === "GET") {
       // getAll function
@@ -11,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (!postsQuery.docs) {
         res.status(404).json({ message: "No posts found." });
       } else {
+        console.log("Response data:", postsQuery.docs);
         res.status(200).json(postsQuery.docs);
       }
     } else if (req.method === "POST") {
