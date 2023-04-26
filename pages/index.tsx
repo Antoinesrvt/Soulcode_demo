@@ -35,6 +35,7 @@ async function fetchPosts(): Promise<Post[]> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_PAYLOAD_PUBLIC_SERVER_URL}/api/post`
   );
+
   const data = await response.json();
   return data.docs.map((post: Post) => ({
     title: post.title,
