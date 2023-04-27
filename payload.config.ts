@@ -7,6 +7,13 @@ import { CollectionConfig } from 'payload/types';
 
 const Post: CollectionConfig = {
   slug: 'post',
+    admin: {
+    defaultColumns: ['title', 'author', 'category', 'tags', 'status'],
+    useAsTitle: 'title',
+  },
+    access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',
