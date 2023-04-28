@@ -4,14 +4,15 @@ import { Post } from "@/interfaces";
 
 export default function BigPostCard(props: Post) {
   return (
-    <div className="col-span-2 shadow-md rounded-lg overflow-hidden">
+    <div className="col-span-2 shadow-md rounded-lg relative overflow-hidden">
       <p>{props.date}</p>
       <h1 className="text-2xl font-bold mb-8">{props.title}</h1>
       <img
-        className="rounded-lg w-full object-cover mb-4"
+        className="relative w-full aspect-[16/7] rounded-lg object-cover mb-4"
         src={props.media}
         alt={props.title}
       />
+
       <div>
         <p className="mb-2">
           by

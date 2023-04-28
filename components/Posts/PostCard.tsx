@@ -4,11 +4,11 @@ import { Post } from "@/interfaces";
 
 export default function PostCard(props: Post) {
   return (
-    <div className="shadow-md rounded-lg overflow-hidden w-1/2">
+    <div className="shadow-md rounded-lg overflow-hidden">
       <p>{props.date}</p>
       <h1 className="text-2xl font-bold mb-4">{props.title}</h1>
       <img
-        className="rounded-lg object-cover mb-2"
+        className="rounded-lg w-full object-cover mb-2"
         src={props.media}
         alt={props.title}
       />

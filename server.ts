@@ -15,11 +15,7 @@ const start = async () => {
 
   app.use("/api/post", (req, res) => PostHandler(req, res));
 
-  app.listen(3000, async () => {
-    console.log(
-      "Express is now listening for incoming connections on port 3000."
-    );
-  });
+  app.listen(3000);
 };
 
 start();
